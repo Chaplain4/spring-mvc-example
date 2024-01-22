@@ -7,6 +7,9 @@
 <title>User Home Page</title>
 </head>
 <body>
-<h3>Hi ${name}</h3>
+<h1>Hello Spring World 3!</h1>
+<p>First random number is ${first}</p>
+<p>Second random number is ${second}</p>
+<a href="/spring_mvc_example_war/test2">Try again?</a>
 </body>
 </html>
