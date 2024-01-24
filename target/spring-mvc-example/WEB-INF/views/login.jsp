@@ -12,8 +12,13 @@
 </head>
 <body>
 <form action="login" method="post">
-    <input type="text" name="login">LOGIN<br><input type="text" name="pwd">PWD<br><input
-        type="submit" value="Login">
+    <input type="text" name="login">LOGIN
+    <br>
+    <input type="text" name="pwd">PWD
+    <br>
+    <input type="submit" value="Login">
+    <br>
+
 </form>
 </body>
 </html>

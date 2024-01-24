@@ -82,6 +82,7 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@Validated User user, Model model) {
+        model.addAttribute("name", user.getLogin());
         if (user.getLogin().equals("John") && user.getPwd().equals("123")) {
             return "welcome";
         } else return "not_welcome";

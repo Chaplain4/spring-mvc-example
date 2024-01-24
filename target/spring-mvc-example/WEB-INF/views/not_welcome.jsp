@@ -11,6 +11,6 @@
     <title>Not Welcome</title>
 </head>
 <body>
-<h1>NOT WELCOME</h1>
+<h1>NOT WELCOME  ${name}</h1>
 </body>
 </html>

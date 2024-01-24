@@ -15,5 +15,6 @@
     <input type="text" name="name"><br> <input
         type="submit" value="Login">
 </form>
+<a href="/spring_mvc_example_war/login">Login?</a>
 </body>
 </html>
