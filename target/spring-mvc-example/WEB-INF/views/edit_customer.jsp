@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Edit Customer</title></head>
 <body>
-<div align="center"><h2>Edit Customer</h2> <form:form action="save" method="post" modelAttribute="customer">
+<div align="center"><h2>Edit Customer</h2> <form:form action="saveC" method="post" modelAttribute="customer">
     <table border="0" cellpadding="5">
         <tr>
             <td>ID:</td>

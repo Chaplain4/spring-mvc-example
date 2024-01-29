@@ -16,5 +16,7 @@
         type="submit" value="Login">
 </form>
 <a href="/spring_mvc_example_war/login">Login?</a>
+<a href="empform">Add Employee</a>
+<a href="viewemp">View Employees</a>
 </body>
 </html>
