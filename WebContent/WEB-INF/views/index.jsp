@@ -23,7 +23,7 @@
                 <td>${customer.name}</td>
                 <td>${customer.email}</td>
                 <td>${customer.address}</td>
-                <td><a href="${pageContext.request.contextPath}/edit?id=${customer.id}">Edit</a> <a href="${pageContext.request.contextPath}/delete?id=${customer.id}">Delete</a></td>
+                <td><a href="${pageContext.request.contextPath}/editCMR/${customer.id}">Edit</a> <a href="${pageContext.request.contextPath}/delete?id=${customer.id}">Delete</a></td>
             </tr>
         </c:forEach></table>
 </div>

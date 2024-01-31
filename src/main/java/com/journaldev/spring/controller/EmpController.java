@@ -1,10 +1,12 @@
-
 package com.journaldev.spring.controller;
-
 import java.util.List;
-
 import com.journaldev.spring.dao.EmpDao;
 import com.journaldev.spring.model.Emp;
+import com.journaldev.spring.util.EmailUtils;
+import com.journaldev.spring.util.EncryptDecryptUtils;
+import com.journaldev.spring.util.MathUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,52 +20,75 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @EnableWebMvc
 public class EmpController {
+
+    private static final Logger logger = LogManager.getLogger(EmpController.class);
+
     @Autowired
-    EmpDao dao;//will inject dao from XML file
+    private EmpDao dao;//will inject dao from XML file
+
+    @Autowired
+    private MathUtils mathutils;
+
+    @Autowired
+    private EmailUtils emailUtils;
+
+    @Autowired
+    private EncryptDecryptUtils encryptDecryptUtils;
 
     /*It displays a form to input data, here "command" is a reserved request attribute
      *which is used to display object data into form
      */
     @RequestMapping("/empform")
-    public String showform(Model m){
+    public String showform(Model m) {
         m.addAttribute("command", new Emp());
         return "empform";
     }
+
     /*It saves object into database. The @ModelAttribute puts request data
      *  into model object. You need to mention RequestMethod.POST method
      *  because default request is GET*/
-    @RequestMapping(value="/save",method = RequestMethod.POST)
-    public String save(@ModelAttribute("emp") Emp emp){
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("emp") Emp emp) {
         dao.save(emp);
         return "redirect:/viewemp";//will redirect to viewemp request mapping
     }
+
     /* It provides list of employees in model object */
     @RequestMapping("/viewemp")
-    public String viewemp(Model m){
-        List<Emp> list=dao.getEmployees();
-        m.addAttribute("list",list);
+    public String viewemp(Model m) {
+        List<Emp> list = dao.getEmployees();
+        m.addAttribute("list", list);
+        logger.info("S = {}", String.valueOf(mathutils.summa(33, 33)));
+        logger.warn("WARN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        //emailUtils.send("chaplain04@gmail.com","test Spring","S = " + mathutils.summa(33,33));
+        String a = encryptDecryptUtils.encrypt("33");
+        System.out.println(a);
+        System.out.println(encryptDecryptUtils.decrypt(a));
         return "viewemp";
     }
+
     /* It displays object data into form for the given id.
      * The @PathVariable puts URL data into variable.*/
-    @RequestMapping(value="/editemp/{id}")
-    public String edit(@PathVariable int id, Model m){
-        Emp emp=dao.getEmpById(id);
-        m.addAttribute("command",emp);
+    @RequestMapping(value = "/editemp/{id}")
+    public String edit(@PathVariable int id, Model m) {
+        Emp emp = dao.getEmpById(id);
+        m.addAttribute("command", emp);
         return "empeditform";
     }
+
     /* It updates model object. */
-    @RequestMapping(value="/editsave",method = RequestMethod.POST)
-    public String editsave(@ModelAttribute("emp") Emp emp, RedirectAttributes redirectAttributes){
+    @RequestMapping(value = "/editsave", method = RequestMethod.POST)
+    public String editsave(@ModelAttribute("emp") Emp emp, RedirectAttributes redirectAttributes) {
         int res = dao.update(emp);
         redirectAttributes.addFlashAttribute("msg", res > 0 ? "Updated" : "Error");
         return "redirect:/viewemp";
     }
+
     /* It deletes record for the given id in URL and redirects to /viewemp */
-    @RequestMapping(value="/deleteemp/{id}",method = RequestMethod.GET)
-    public String delete(@PathVariable int id){
+    @RequestMapping(value = "/deleteemp/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable int id) {
         dao.delete(id);
         return "redirect:/viewemp";
     }
 }
-

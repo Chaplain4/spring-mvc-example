@@ -3,6 +3,8 @@ package com.journaldev.spring.controller;
 import com.journaldev.spring.model.Equation;
 import com.journaldev.spring.model.Triangle;
 import com.journaldev.spring.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +19,7 @@ import java.util.Set;
 
 @Controller
 public class MathController {
+    private static Logger logger = LogManager.getLogger(EmpController.class);
 
     //написать JSP форму для ввода а, b, c.
     //дать решение - 0,1,2 корня
@@ -39,6 +42,7 @@ public class MathController {
         } else {
             double d = (equation.getB() * equation.getB()) - (4.0 * equation.getA() * equation.getC());
             if ((equation.getA() == 0 && equation.getB() == 0) || d < 0) {
+                logger.error("equation.getA() == 0 && equation.getB() == 0) || d < 0");
                 solutions = "no roots";
                 model.addAttribute("solutions", solutions);
             } else if (equation.getA() == 0) {

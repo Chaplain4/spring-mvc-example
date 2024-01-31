@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO {
@@ -47,6 +48,17 @@ public class CustomerDAO {
                 return e;
             }
         });
+    }
+
+    public List<Customer> search(String keyword) {
+        List<Customer> all = getCustomers();
+        List<Customer> result = new ArrayList<>();
+        for (Customer c : all) {
+            if (c.getAddress().contains(keyword) || c.getName().contains(keyword) || c.getEmail().contains(keyword)) {
+                result.add(c);
+            }
+        }
+        return result;
     }
 }
 

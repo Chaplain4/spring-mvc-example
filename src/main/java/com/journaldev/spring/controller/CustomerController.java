@@ -23,13 +23,6 @@ public class CustomerController {
     @Autowired
     CustomerDAO cdao;
 
-
-    //    @RequestMapping("/viewemp")
-//    public String viewemp(Model m){
-//        List<Emp> list=dao.getEmployees();
-//        m.addAttribute("list",list);
-//        return "viewemp";
-//    }
     @RequestMapping("/customer")
     public String home(Model m) {
         List<Customer> listCustomer = cdao.getCustomers();
@@ -51,28 +44,18 @@ public class CustomerController {
         return "redirect:/customer";
     }
 
-    //      @RequestMapping(value="/editsave",method = RequestMethod.POST)
-//    public String editsave(@ModelAttribute("emp") Emp emp, RedirectAttributes redirectAttributes){
-//        int res = dao.update(emp);
-//        redirectAttributes.addFlashAttribute("msg", res > 0 ? "Updated" : "Error");
-//        return "redirect:/viewemp";
-//    }
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editCustomerForm(@ModelAttribute("Customer") Customer cus, RedirectAttributes redirectAttributes) {
-        int res = cdao.update(cus);
+    @RequestMapping(value="/editC",method = RequestMethod.POST)
+    public String editC(@ModelAttribute("Customer") Customer emp, RedirectAttributes redirectAttributes){
+        int res = cdao.update(emp);
+        redirectAttributes.addFlashAttribute("msg", res > 0 ? "Updated" : "Error");
         return "redirect:/customer";
     }
 
-    //    @RequestMapping(value="/editemp/{id}")
-//    public String edit(@PathVariable int id, Model m){
-//        Emp emp=dao.getEmpById(id);
-//        m.addAttribute("command",emp);
-//        return "empeditform";
-//    }
-    @RequestMapping(value = "/edit?id={id}")
-    public String cedit(@PathVariable int id, Model m) {
-Customer c = cdao.getEmpById(id);
-        m.addAttribute("command",c);
+
+    @RequestMapping(value="/editCMR/{id}")
+    public String edit(@PathVariable int id, Model m){
+        Customer emp=cdao.getEmpById(id);
+        m.addAttribute("command",emp);
         return "edit_customer";
     }
 
@@ -84,7 +67,7 @@ Customer c = cdao.getEmpById(id);
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam String keyword) {
-        List<Customer> result = csi.search(keyword);
+        List<Customer> result = cdao.search(keyword);
         ModelAndView mav = new ModelAndView("search");
         mav.addObject("result", result);
         return mav;
