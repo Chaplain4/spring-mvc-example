@@ -12,6 +12,15 @@
             </array>
           </option>
         </State>
+        <State>
+          <option name="id" value="6e080bb0-e4c7-4299-b4f0-7a99c62039d4" />
+          <option name="name" value="spring_db" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/src/main/spring_db.sql" />
+            </array>
+          </option>
+        </State>
       </list>
     </option>
   </component>

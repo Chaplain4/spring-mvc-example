@@ -18,5 +18,7 @@
 <a href="/spring_mvc_example_war/login">Login?</a>
 <a href="empform">Add Employee</a>
 <a href="viewemp">View Employees</a>
+<a href="customer">View Customers</a>
+<a href="viewpizza">View Pizzas</a>
 </body>
 </html>

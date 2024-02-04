@@ -36,6 +36,15 @@
         <property name="template" ref="jt"/>
     </bean>
 
+    <bean id="pdao" class="com.journaldev.spring.dao.PizzaDAO">
+        <property name="template" ref="jt"/>
+    </bean>
+
+
+    <!-- Определение бина для репозитория -->
+    <bean id="pizzaRepository" class="com.journaldev.spring.controller.PizzaRepository" abstract="true"/>
+
+
     <!--    Bean Declaration (WO any property/fields)   -->
     <bean id="math" class="com.journaldev.spring.util.MathUtils"/>
 
