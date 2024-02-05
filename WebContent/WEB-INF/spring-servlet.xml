@@ -40,7 +40,9 @@
         <property name="template" ref="jt"/>
     </bean>
 
-
+    <bean id="udao" class="com.journaldev.spring.dao.UserDAO">
+        <property name="template" ref="jt"/>
+    </bean>
     <!-- Определение бина для репозитория -->
     <bean id="pizzaRepository" class="com.journaldev.spring.controller.PizzaRepository" abstract="true"/>
 

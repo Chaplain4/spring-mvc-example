@@ -3,9 +3,8 @@ package com.journaldev.spring.controller;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.journaldev.spring.model.User;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@RequestMapping("/test")
 public class HomeController {
 
 
@@ -83,7 +82,7 @@ public class HomeController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@Validated User user, Model model) {
         model.addAttribute("name", user.getLogin());
-        if (user.getLogin().equals("John") && user.getPwd().equals("123")) {
+        if (user.getLogin().equals("John") && user.getPassword().equals("123")) {
             return "welcome";
         } else return "not_welcome";
     }
@@ -91,7 +90,7 @@ public class HomeController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String user(@Validated User user, Model model) {
         System.out.println("User Page Requested");
-        model.addAttribute("name", user.getName());
+        model.addAttribute("name", user.getFirstName());
         return "user";
     }
 }

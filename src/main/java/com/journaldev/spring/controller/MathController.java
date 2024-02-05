@@ -2,7 +2,6 @@ package com.journaldev.spring.controller;
 
 import com.journaldev.spring.model.Equation;
 import com.journaldev.spring.model.Triangle;
-import com.journaldev.spring.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;

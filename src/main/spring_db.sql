@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Фев 04 2024 г., 13:53
--- Версия сервера: 5.7.39-log
--- Версия PHP: 7.2.34
+-- Время создания: Фев 05 2024 г., 20:33
+-- Версия сервера: 5.6.41
+-- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -39,7 +40,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `address`) VALUES
-(1, 'Ivan', 'Inab@Gmail.com', 'Minsk, Marksa st.1'),
+(1, 'Ivan1', 'Inab@Gmail.com', 'Minsk'),
 (4, 'Addas', 'xx@gmail.com', 'Minsk, Marksa st'),
 (5, 'info', 'xx@gmail.com', 'Minsk, Marksa st'),
 (6, 'Ivan111', 'Inab@Gmail.com', 'Minsk'),
@@ -63,7 +64,7 @@ CREATE TABLE `emp99` (
 --
 
 INSERT INTO `emp99` (`id`, `name`, `salary`, `designation`) VALUES
-(2, 'Addas1', 11, 'fskljghs'),
+(2, 'Addas1111111', 11, 'fskljghs'),
 (3, 'John', 1111, 'fskljghs');
 
 -- --------------------------------------------------------
@@ -87,6 +88,29 @@ INSERT INTO `pizzas` (`id`, `name`, `size`, `price`) VALUES
 (1, 'Margherita S', 25, 10.5),
 (2, 'Margherita M', 30, 15.9);
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` tinyint(1) NOT NULL,
+  `first_name` varchar(128) DEFAULT NULL,
+  `last_name` varchar(128) DEFAULT NULL,
+  `login` varchar(32) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `is_active` varchar(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `login`, `password`, `email`, `is_active`) VALUES
+(1, 'Ivan', 'Ivanov', 'Ivan', '123', 'Ivan123@mail.ru', '');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -104,10 +128,12 @@ ALTER TABLE `emp99`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `pizzas`
+-- Индексы таблицы `users`
 --
-ALTER TABLE `pizzas`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -126,10 +152,10 @@ ALTER TABLE `emp99`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT для таблицы `pizzas`
+-- AUTO_INCREMENT для таблицы `users`
 --
-ALTER TABLE `pizzas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `users`
+  MODIFY `id` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
