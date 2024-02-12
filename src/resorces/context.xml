@@ -2,12 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <jpa:repositories base-package="com.journaldev.spring.controller"
-                      base-class="com.journaldev.spring.controller.BaseRepository"/>
+    <jpa:repositories base-package="com.journaldev.spring.repo"
+                      base-class="com.journaldev.spring.repo.CatRepository"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.example.demoSpringData.model" />
+        <property name="packagesToScan" value="com.journaldev.spring.model" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>

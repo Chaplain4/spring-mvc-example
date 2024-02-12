@@ -17,7 +17,7 @@
 
 <h1>Pizzas List</h1>
 <table border="2" width="70%" cellpadding="2">
-  <tr><th>Id</th><th>Name</th><th>Salary</th><th>Designation</th><th>Edit</th><th>Delete</th></tr>
+  <tr><th>Id</th><th>Name</th><th>Size</th><th>Price</th><th>Edit</th><th>Delete</th></tr>
   <h2>${msg}<h2>
     <c:forEach var="pizza" items="${list}">
     <tr>
