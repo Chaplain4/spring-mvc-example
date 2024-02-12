@@ -11,9 +11,9 @@
 <body>
 <form:form action="login" method="post">
     <b>login:</b>
-    <form:input type="text" path="login"/><br>
+    <form:input type="text" path="login" required="required"/><br>
     <b>password:</b>
-    <form:input type="password" path="password"/><br>
+    <form:input type="password" path="password" required="required"/><br>
     <input type="submit" value="Login">
 </form:form>
 </body>

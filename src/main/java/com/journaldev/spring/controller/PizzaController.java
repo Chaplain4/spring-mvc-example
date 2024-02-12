@@ -2,6 +2,7 @@ package com.journaldev.spring.controller;
 
 import com.journaldev.spring.dao.EmpDao;
 import com.journaldev.spring.dao.PizzaDAO;
+import com.journaldev.spring.dao.PizzaSpringDataDAO;
 import com.journaldev.spring.model.Emp;
 import com.journaldev.spring.model.Pizza;
 import com.journaldev.spring.util.EmailUtils;
@@ -10,6 +11,10 @@ import com.journaldev.spring.util.MathUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,15 +25,18 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @EnableWebMvc
 public class PizzaController {
     private static final Logger logger = LogManager.getLogger(EmpController.class);
 
+//    @Autowired
+//    private static PizzaSpringDataDAO springDataDAO = new PizzaSpringDataDAO();
+
     @Autowired
     private PizzaDAO dao; //will inject dao from XML file
-
 
     /*It displays a form to input data, here "command" is a reserved request attribute
      *which is used to display object data into form
@@ -85,7 +93,7 @@ public class PizzaController {
         } catch (Throwable t) {
             logger.error("S = {}", pizza.toString() + "save error. Details: " + t.getMessage());
         }
-        return "redirect:/viewemp";
+        return "redirect:/viewpizza";
     }
 
     /* It deletes record for the given id in URL and redirects to /viewpizza */
@@ -98,5 +106,13 @@ public class PizzaController {
             logger.error("S = {}", "Pizza with id #" + id + " delete error. Details: " + t.getMessage());
         }
         return "redirect:/viewpizza";
+
+//        try {
+//            pizzaRepository.deleteById(id);
+//            logger.info("S = {}", "Pizza with id #" + id + " deleted successfully.");
+//        } catch (Throwable t) {
+//            logger.error("S = {}", "Pizza with id #" + id + " delete error. Details: " + t.getMessage());
+//        }
+//        return "redirect:/viewpizza";
     }
 }

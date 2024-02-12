@@ -11,15 +11,15 @@
 <body>
 <form:form action="register" method="post">
     <b>First name:</b>
-    <form:input type="text" path="firstName"/><br>
+    <form:input type="text" path="firstName" required="required"/><br>
     <b>Last name:</b>
-    <form:input type="text" path="lastName"/><br>
+    <form:input type="text" path="lastName" required="required"/><br>
     <b>login:</b>
-    <form:input type="text" path="login"/><br>
+    <form:input type="text" path="login" required="required"/><br>
     <b>password:</b>
-    <form:input type="password" path="password"/><br>
+    <form:input type="password" path="password" required="required"/><br>
     <b>email:</b>
-    <form:input type="email" path="email"/><br>
+    <form:input type="email" path="email" required="required"/><br>
     <input type="submit" value="Register">
 </form:form>
 </body>

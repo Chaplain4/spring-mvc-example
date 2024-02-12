@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table (name = "pizzas")
-public class Pizza {
+public class Pizza implements BaseEntity {
     @Id
     @Column
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,4 +22,14 @@ public class Pizza {
     private int size;
     @Column(name = "price", nullable = true)
     private double price;
+
+    @Override
+    public Boolean getDeleted() {
+        return null;
+    }
+
+    @Override
+    public void setDeleted(Boolean deleted) {
+
+    }
 }
